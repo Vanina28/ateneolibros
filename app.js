@@ -1,6 +1,4 @@
 const express = require('express');
-const cookies = require('cookie-parser');
-
 const app = express();
 const path = require('path');
 const methodOverride =  require('method-override'); //  métodos PUT y DELETE
