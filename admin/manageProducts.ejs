@@ -1,0 +1,96 @@
+<%- include('../partials/head-admin')%>
+
+  <body class="body-admin">
+    <%- include('../partials/header-admin')%>
+      <section class="section-title flex">
+        <h1>Productos</h1>
+        <div class="button-add ani">
+          <a href="/admin/create">
+            <span>Agregar nuevo</span>
+            <i class="fas fa-plus"></i>
+          </a>
+        </div>
+      </section>
+      <section class="section-filter-admin boxShadow">
+        <div class="row-filter">
+          <div>
+            <label for="sku" class="label-filter">SKU</label>
+            <input type="text" name="sku" class="input-filter" placeholder="Ingresa código unico">
+          </div>
+          <div>
+            <label for="name_book" class="label-filter">Nombre del libro</label>
+            <input type="text" name="name_book" class="input-filter" placeholder="Ingresa nombre">
+          </div>
+          <div>
+            <label for="author" class="label-filter">Autor</label>
+            <select name="author" class="input-filter">
+              <% for (let i=0; i < autores.length; i++) {%>
+                <option value="<%= autores[i].idAuthor%>">
+                  <%= autores[i].nameAuthor+' '+autores[i].surnameAuthor%>
+                </option>
+              <% } %>
+            </select>
+          </div>
+        </div>
+        <div class="row-filter">
+          <div>
+            <label for="category" class="label-filter">Categoria</label>
+            <select name="category" class="input-filter">
+              <% for (let i=0; i < categorias.length; i++) {%>
+                <option value="<%= categorias[i].idCategory%>">
+                  <%= categorias[i].nameCategory%>
+                </option>
+                <% } %>
+            </select>
+          </div>
+          <div>
+            <label for="date-star" class="label-filter">Fecha de creación </label>
+            <input type="date" name="date-star" class="input-filter" placeholder="Desde...">
+          </div>
+          <div>
+            <label for="date-end" class="label-filter">Hasta</label>
+            <input type="date" name="date-end" class="input-filter" placeholder="Hasta...">
+          </div>
+        </div>
+      </section>
+      <section class="list-products-admin">
+        <table class="table-products">
+          <tr>
+            <th class="disabledPc">Imagen</th>
+            <th>SKU</th>
+            <th class="disabled">Nombre del producto</th>
+            <th>Acciones</th>
+          </tr>
+          <% dataBooks.forEach(book=>{%>
+            <tr class="article-product-admin">
+              <td class="disabledPc">
+                <img src="../../images/books/<%= book.imageProduct %>" alt="<%= book.nameBook %>"
+                  title="<%= book.nameBook %>">
+              </td>
+              <td>
+                <%= book.sku %>
+              </td>
+              <td class="disabled">
+                <%= book.nameBook %>
+              </td>
+              <td class="td-actions">
+                <div class="content-actions flexV">
+                  <a href="/admin/edit/<%= book.sku %>" class="btn-edit ani">
+                    <i class="fas fa-edit"></i>
+                    <span>Editar</span>
+                  </a>
+                  <a href="/admin/delete/<%= book.sku %>" class="btn-delete ani">
+                    <i class="fas fa-trash-alt"></i>
+                    <span>Eliminar</span>
+                  </a>
+                </div>
+              </td>
+            </tr>
+            <%}); %>
+
+        </table>
+      </section>
+      </section>
+  </body>
+
+  </html>
