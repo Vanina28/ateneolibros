@@ -1,4 +1,3 @@
-// ************ Require's ************
 const express = require('express');
 const app = express();
 const path = require('path');
@@ -11,12 +10,6 @@ const db = require("../database/models");
 const publicPath = path.resolve(__dirname, './public');
 app.use(express.static(publicPath));
 
-/*********Conectando Json***********/
-//Productos
-const productsFilePath = path.join(__dirname, '../data/products.json');
-const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
-
-//Usuarios
 const usersFilePath = path.join(__dirname, '../data/users.json');
 const users = JSON.parse(fs.readFileSync(usersFilePath, 'utf-8'));
 
