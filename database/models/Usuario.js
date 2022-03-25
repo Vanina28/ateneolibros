@@ -5,44 +5,26 @@ module.exports = function(sequelize, dataTypes){
   
     //Declarar lo datos de la tabla usuarios
     let cols = {
-      email:{
-        type: dataTypes.STRING(50),
+      idUser:{
+        type: dataTypes.NUMBER,
         primaryKey: true,
         allowNull: false,
         validate:{
           notNull: true,
-          isEmail: true,
         }
       },
-      names:{
+      email:{
         type: dataTypes.STRING(50),
         allowNull: false,
         validate:{
           notNull: true,
+          isEmail: true
         }
       },
-      surnames:{
+      username:{
         type: dataTypes.STRING(50),
-        allowNull: false,
-        validate:{
-          notNull: true,
-        }
       },
-      city:{
-        type: dataTypes.STRING(20),
-        allowNull: false,
-        validate:{
-          notNull: true,
-        }
-      },
-      cellphone:{
-        type: dataTypes.STRING(15),
-        allowNull: false,
-        validate:{
-          notNull: true,
-        }
-      },
-      pass:{
+      password:{
         type: dataTypes.STRING(70),
         allowNull: false,
         validate:{
@@ -50,7 +32,7 @@ module.exports = function(sequelize, dataTypes){
           min: 6,
         }
       },
-      confirmPass:{
+      password2:{
         type: dataTypes.STRING(70),
         allowNull: false,
         validate:{
@@ -59,21 +41,7 @@ module.exports = function(sequelize, dataTypes){
           equals: this.pass,
         }
       },
-      acceptCondition:{
-        type: dataTypes.CHAR(5),
-        allowNull: false,
-        validate:{
-          notNull: true,
-        }
-      },
-      idRole:{
-        type: dataTypes.INTEGER,
-        allowNull: false,
-        validate:{
-          notNull: true,
-        }
-      },
-      avatar:{
+      idImages:{
         type: dataTypes.STRING(100)
       }
     }
@@ -82,24 +50,14 @@ module.exports = function(sequelize, dataTypes){
     let config = {
         tableName:'users',
         timestamps: false
-    }
+    },
   
     let Usuario = sequelize.define(alias,cols, config);
   
     // Relaciones de la tabla Usuarios N:1
     Usuario.associate = function(models){
-      Usuario.hasMany(models.Roles,{
+      Usuario.hasMany(models.idImages,{
         as: "usuarios",
-        foreignKey: "idRole"
-      });
-  
-      // Relaciones con la tabla ordenes 1:N
-      Usuario.belongsTo(models.Ordenes,{
-        as: "usuariosOrdenes",
-        foreignKey: "email"
-      });
-  
+        foreignKey: "idImages"
+      })
     }
-  
-    return Usuario
-  }

@@ -1,29 +1,15 @@
-// ************ Require's ************
+
 const express = require("express");
 const router = express.Router();
 const multer = require("multer");
 const path = require("path");
 const { body } = require("express-validator");
-
-// ************ Controller Require ************
 const adminController = require("../controllers/adminController");
 
-// ************ Middlewares ************
-// const validations = require("../middlewares/validations")
 
-/************** Declaración de multer Productos ******/
-let multerDiskStorage = multer.diskStorage({
-  destination: (req, file, callback) => {
-    let folder = path.join(__dirname, "../public/images/books");
-    callback(null, folder);
-  },
-  filename: (req, file, callback) => {
-    let imageName = "book-" + Date.now() + path.extname(file.originalname);
-    callback(null, imageName);
-  },
-});
+ const validations = require("../middlewares/validations")
 
-let fileUpload = multer({ storage: multerDiskStorage });
+
 
 /************** Declaración de multer Clientes ******/
 let multerDiskStorageCustomers = multer.diskStorage({
@@ -39,7 +25,7 @@ let multerDiskStorageCustomers = multer.diskStorage({
 
 let fileUploadCustomer = multer({ storage: multerDiskStorageCustomers });
 
-// ************ Validar Existencia del sku ************
+
 const db = require("../database/models");
 
 
@@ -113,17 +99,6 @@ const authMiddleware = require('../middlewares/authMiddleware');
 /*** GET TODOS LOS PRODUCTOS ***/
 router.get("/", authMiddleware, adminController.index);
 
-/*** CREAR UN PRODUCTO ***/
-router.get("/create",authMiddleware, adminController.add);
-router.post("/create",fileUpload.single("imagebook"),validateFormCreate,adminController.store);
-
-/*** EDITAR UN PRODUCTO ***/
-router.get("/edit/:id",authMiddleware, adminController.edit);
-router.put("/edit/:id", fileUpload.single("imagebook"),validateFormEdit, adminController.update);
-
-/*** ELIMINAR UN PRODUCTO***/
-router.get("/delete/:id",authMiddleware, adminController.delete);
-router.delete("/delete/:id", adminController.destroy);
 
 /*** GET TODOS LOS CLIENTES ***/
 router.get("/customers",authMiddleware, adminController.customers);

@@ -24,7 +24,7 @@
      "idImages": "3"
     },
     {
-     "id": 4,
+     "idUser": 4,
      "email": "lwiskar3@unc.edu",
      "username": "Ludovika",
      "password": "$2a$10$7ph.0N0HeTM.NjKg/RROP.iD1ZLJOF8j1ACWT9nCLNgehA/SGFHva",
@@ -32,7 +32,7 @@
      "idImages": "4"
     },
     {
-     "id": 5,
+     "idUser": 5,
      "email": "vbushaway4@slate.com",
      "username": "Valina",
      "password": "$2a$10$7ph.0N0HeTM.NjKg/RROP.iD1ZLJOF8j1ACWT9nCLNgehA/SGFHva",
@@ -40,7 +40,7 @@
      "idImages": "5"
     },
     {
-     "id": 6,
+     "idUser": 6,
      "email": "kbruck5@cnbc.com",
      "username": "Kyle",
      "password": "$2a$10$7ph.0N0HeTM.NjKg/RROP.iD1ZLJOF8j1ACWT9nCLNgehA/SGFHva",
@@ -48,7 +48,7 @@
      "idImages": "6"
     },
     {
-     "id": 7,
+     "idUser": 7,
      "email": "eiuorio6@purevolume.com",
      "username": "Emmey",
      "password": "$2a$10$7ph.0N0HeTM.NjKg/RROP.iD1ZLJOF8j1ACWT9nCLNgehA/SGFHva",
