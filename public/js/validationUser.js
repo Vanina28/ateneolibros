@@ -7,31 +7,13 @@ window.addEventListener('load', function () {
       // Validar campo nombre del usuario
       let name = document.querySelector('#name');
       if(name.value == ''){
-        errores.push('El campo nombre no puede estar vacio');
+        errores.push('El campo nombre de usuario no puede estar vacio');
       }
-  
-      // Validar campo apellido del usuario
-      let lastname = document.querySelector('#lastname');
-      if(lastname.value == ''){
-        errores.push('El campo apellido no puede estar vacio');
-      }
-      
+
       // Validar campo email del usuario
       let email = document.querySelector('#email');
       if(email.value == ''){
         errores.push('El campo email no puede estar vacio');
-      }
-  
-      // Validar campo ciudad del usuario
-      let city = document.querySelector('#city');
-      if(city.value == ''){
-        errores.push('El campo ciudad no puede estar vacio');
-      }
-  
-      // Validar campo telefono celular del usuario
-      let phone = document.querySelector('#phone');
-      if(phone.value == ''){
-        errores.push('El campo telefono celular no puede estar vacio');
       }
   
       // Validar campo contraseña del usuario
