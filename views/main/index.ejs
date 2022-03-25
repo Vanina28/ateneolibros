@@ -5,12 +5,12 @@
       <div class="banners">
       </div>
       <section class="section-news">
-        <h2 class="title_one_line">ULTIMAS NOVEDADES</h2>
+        <h2 class="title_one_line">BEST SELLERS</h2>
         <div class="novedades">
           <% for(let i=0; i < 8; i++){%>
-            <a href="/products/<%= dataBooks[i].sku %>">
-              <img src="../../images/books/<%= dataBooks[i].image %>" alt="<%= dataBooks[i].name %>"
-                title="<%= dataBooks[i].name %>">
+            <a href="/">
+              <img class="books" src='../../images/el-ateneo-logo.jpg' alt="logo librería"
+                title="logo librería">
             </a>
             <%}; %>
         </div>
@@ -19,11 +19,9 @@
         <h2 class="title_one_line"><span>LOS BOOKSELLERS</span> DEL MES</h2>
         <div class="background_recommended">
           <div class="featured_monthly">
-            <img src="../images/featured_monthly_highlights.png" alt="libro_destacado_del_mes"
-              title="libro_destacado_del_mes">
           </div>
           <div class="info_featured">
-            <h3>HARRY POTTER 7 <span>Y LAS RELIQUIAS DE LA MUERTE</span></h3>
+            <h3>EL PRINCIPITO</h3>
             <div class="content-raiting">
               <div>
                 <i class="fas fa-star"></i>
@@ -33,117 +31,27 @@
                 <i class="far fa-star"></i>
               </div>
               <div class="author">
-                <p>|</p>
-                <p>J.K ROWLING</p>
+                <p>ANTOINE DE SAINT-EXUPERY</p>
               </div>
             </div>
             <div>
               <div class="item_featured">
                 <h6>Género:</h6>
-                <p>Fantástica y ciencia ficción</p>
+                <p>Novela corta</p>
               </div>
-              <div class="item_featured">
-                <h6>Publicación original:</h6>
-                <p>21 de julio de 2007</p>
-              </div>
-              <div class="item_featured">
-                <h6>Páginas:</h6>
-                <p>697</p>
-              </div>
-            </div>
-            <h3>$ 47.000</h3>
+            <h3>$ 7.000</h3>
             <div class="sinopsis_featured">
               <h5>Sinopsis</h5>
               <p>
-                "Entregadme a Harry Potter -dijo la voz de Voldemort- y nadie sufrirá ningún daño. Entregadme a Harry
-                Potter
-                y
-                dejaré el
-                colegio intacto. Entregadme a Harry Potter y seréis recompensados." Cuando se monta en el sidecar de la
-                moto
-                de Hagrid y
-                se eleva en el cielo, dejando Privet Drive por última vez, Harry Potter sabe que lord Voldemort y sus
-                mortífagos se
-                hallan cerca.
-              </p>
-              <p>El encantamiento protector que había mantenido a salvo a Harry se ha roto, pero él no puede seguir
-                escondiéndose. El
-                Señor Tenebroso se dedica a aterrorizar a todos los seres queridos de Harry, y, para detenerlo, éste
-                habrá
-                de
-                encontrar
-                y destruir los horrocruxes que quedan. La batalla definitiva debe comenzar: Harry tendrá que alzarse y
-                enfrentarse a su
-                enemigo...
+                El principito es una narración corta del escritor francés Antoine de Saint-Exupéry, que trata de la historia de un pequeño príncipe que parte de su asteroide a una travesía por el universo, en la cual descubre la extraña forma en que los adultos ven la vida y comprende el valor del amor y la amistad.
               </p>
             </div>
-            <div class="button_white">
-              <i class="fas fa-plus"></i>
-              <a href="/products/9789585277304">
-                Ver más
-              </a>
-            </div>
           </div>
-        </div>
-      </section>
-      <main>
-        <section class="featured-generes">
-          <h2 class="title_one_line"><span>GÉNEROS</span> DESTACADOS</h2>
-          <p>
-            Desde la libreria Books te presentamos algunas categorías destacadas para encontrar tú libro favorito
-          </p>
-          <div class="item_generes">
-            <a href="#">Acción</a>
-            <a href="#">Ficción</a>
-            <a href="#">Romántico</a>
-            <a href="#">Fantástica</a>
-            <a href="#">Ciencia Ficción</a>
-          </div>
-          <div class="container-books-featured">
-            <% for(let i=0; i < 8; i++){%>
-              <%#if(dataBooks[i].category=="Romántica" ){%>
-                <div class="items_home">
-                  <a href="/products/<%= dataBooks[i].sku %>">
-                    <img src="../../images/books/<%= dataBooks[i].image %>" alt="<%= dataBooks[i].name %>"
-                      title="<%= dataBooks[i].name %>">
-                  </a>
-                  <h4>
-                    <%= dataBooks[i].name %>
-                  </h4>
-                </div>
-                <%#} %>
-                  <%}; %>
-          </div>
-        </section>
-      </main>
-      <section class="section-attribute">
-        <h2 class="title_one_line"><span>¿POR QUÉ COMPRAR EN</span> LIBRERIA BOOKS?</h2>
-        <div class="content-attributes">
-          <article>
-            <img src="../images/icono_precios.png" alt="icono_precios" title="icono_precios">
-            <h3>Los mejores<span>Precios y ofertas</span></h3>
-          </article>
-          <article>
-            <img src="../images/icono_entrega.png" alt="icono_entrega" title="icono_entrega">
-            <h3>Rápido y económico<span>Servicio de entrega</span></h3>
-          </article>
-          <article>
-            <img src="../images/icono_compra.png" alt="icono_compra" title="icono_compra">
-            <h3>Fácil y 100% segura<span>Compra de libros</span></h3>
-          </article>
-          <article>
-            <img src="../images/icono_libros.png" alt="icono_libros" title="icono_libros">
-            <h3>Fácil y rápido<span>Cambio de libros</span></h3>
-          </article>
-          <article>
-            <img src="../images/icono_recibe.png" alt="icono_recibe" title="icono_recibe">
-            <h3>Compra en línea<span>Recibe en casa</span></h3>
-          </article>
         </div>
       </section>
       <section class="section-newsletter">
         <h2 class="title_one_line"><span>SUSCRÍBETE A NUESTRO</span>NEWSLETTER</h2>
-        <p>Entérate de las últimas novedades y recibe descuentos exclusivos</p>
+        <p>Entérate de las últimas novedades</p>
         <div class="content-form-newsletter">
           <form action="/">
             <input type="email" name="email-newsletter" placeholder="Correo electrónico">
@@ -151,14 +59,6 @@
               Suscribirme
               <i class="far fa-hand-point-up"></i>
             </button>
-            <br>
-            <div class="checkbox-polity">
-              <input type="checkbox" name="" id="">
-              <h5>
-                Acepto <a href="#"><span class="">
-                    políticas de privacidad</span></a> y manejo de datos
-              </h5>
-            </div>
           </form>
         </div>
       </section>
