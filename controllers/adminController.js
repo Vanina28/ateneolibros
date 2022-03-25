@@ -30,7 +30,7 @@ let adminController = {
     res.render('./admin/addProduct',{
       users
     });
-  }
+  },
 
   //  formulario de editar
   edit: async (req, res) => {
@@ -43,158 +43,70 @@ let adminController = {
   });
     	
   },
-  // Actualizar - método de actualizar
-  update: async (req, res) => {
-    let resultValidation = validationResult(req);
-    const idProduct = req.params.id;
-    const productEdit = await db.Productos.findByPk(idProduct);
-
-    if(resultValidation.isEmpty()){
-      const {nameBook,author,price,publisher, format, category, sku, language,edition, pages,chapters,description,image} = req.body;
-
-      const fileNameBook = (req.file) ? req.file.filename : image;
-    
-      db.Productos.update({
-          sku,
-          nameBook, 
-          idAuthor:author,
-          price,
-          publisher,
-          idFormat:format,
-          idCategory:category,
-          languageBook:language,
-          editionBook:edition,
-          pages,
-          chapters,
-          descriptionBook:description,
-          imageProduct: fileNameBook
-      },{
-        where:{
-          sku: req.params.id
-        }
-      });  
-
-      let productsDB = await db.Productos.findAll();
-      let categorias = await db.Categorias.findAll();
-      let autores = await db.Autores.findAll();
-      
-      res.render('./admin/manageProducts',{
-        dataBooks: productsDB,
-        categorias,
-        autores,
-        user: req.session.userLogged
-      });
-    }else{
-      let categorias = await db.Categorias.findAll();
-      let autores = await db.Autores.findAll();
-      let formatos = await db.Formatos.findAll();
-      res.render('./admin/editProduct',{     
-        categorias,
-        autores,
-        formatos,
-        product : productEdit,
-        errors: resultValidation.mapped(),
-        oldData: req.body,
-        user: req.session.userLogged
-      });
-    }
-  },
-  // Eliminar - Formulario de confirmar eliminado
-  delete: async (req, res) => {
-    let idProduct = req.params.id;
-
-    let productDelete = await db.Productos.findByPk(idProduct);
-
-    res.render('./admin/deleteProduct',{productDelete});
-  },
-  // Borrar - Eliminar un producto de la BD
-  destroy: async (req, res) => {
-    let idBook = req.params.id;
-		
-    db.Productos.destroy({
-      where: {
-        sku: idBook
-      }
-  })
-    let productsDB = await db.Productos.findAll();
-    let categorias = await db.Categorias.findAll();
-    let autores = await db.Autores.findAll();
-
-		res.render('./admin/manageProducts',{
-      dataBooks: productsDB,
-      categorias,
-      autores,
-      user: req.session.userLogged
-    });		
-  },
   // Clientes - Mostrar todos los clientes
-  customers: (req, res) => {    
-		res.render('./admin/customers',{
+  list: (req, res) => {    
+		res.render('./admin/users',{
     dataUsers: users,
     user: req.session.userLogged});
   },
-  // Edit - formulario de editar cliente
-  editCustomers:(req, res) => {
-    let idCustomer = req.params.id;
-		customerEdit = users.find(item => item.id == idCustomer);
-    res.render('./admin/editCustomer',{ customer : customerEdit });
+  // Edit 
+  editUsers:(req, res) => {
+    let idUser = req.params.id;
+		userEdit = users.find(item => item.id == idUser);
+    res.render('./admin/editUser',{ user : UsertoEdit });
   },
   // Actualizar - método de actualizar
-  updateCustomer: (req, res) => {
+  updateUser: (req, res) => {
     let resultValidation = validationResult(req);
     if(resultValidation.isEmpty()){
-      const {name,lastname,email,phone,city,pass,confirmpass,role,image} = req.body;
-		const idCustomer = req.params.id;
-    const fileNameCustomer = (req.file) ? req.file.filename : image;
-    const customersNews = [];
+      const {username,email,password,password2,idImage} = req.body;
+		const idUser = req.params.id;
+    const fileNameUser = (req.file) ? req.file.filename : image;
+    const usersNews = [];
     users.map(item =>{
 			if(item.id == idCustomer){
-				item.name_user = name; 
-        item.last_name = lastname;
+				item.username_user = name; 
         item.email = email; 
-        item.city = city;
-        item.phone = phone;
         item.password = pass;
-        item.confirmpass = confirmpass;        
-        item.image = fileNameCustomer;
-        item.role = role;        
-        customersNews.push(item);
+        item.password2 = password2;        
+        item.image = idImage;    
+        usersNews.push(item);
 			}else{
-        customersNews.push(item);
+        usersNews.push(item);
       }			
 		});		
-		fs.writeFileSync(usersFilePath,JSON.stringify(customersNews),'utf-8');
-		res.render('./admin/customers',{dataUsers: customersNews});	
+		fs.writeFileSync(usersFilePath,JSON.stringify(usersNews),'utf-8');
+		res.render('./admin/users',{dataUsers: customersNews});	
     }else{
-      res.render('./admin/editCustomer',{
-        customer : customerEdit,
+      res.render('./admin/editUser',{
+        user : usertoEdit,
         errors: resultValidation.mapped(),
         oldData: req.body,
         user: req.session.userLogged
       });
     }    	
   },
-  // Eliminar - Formulario de confirmar eliminado cliente
-  deleteCustomer: (req, res) => {
-    let idCustomer = req.params.id;
-		customerDelete = users.find(item => item.id == idCustomer);
-    return res.render('./admin/deleteCustomer',{
-      customerDelete,
+  // Eliminar 
+  deleteUser: (req, res) => {
+    let idUser = req.params.id;
+		UserDelete = users.find(item => item.id == idUser);
+    return res.render('./admin/deleteUser',{
+      userDelete,
       user: req.session.userLogged
     });
   },
-  // Borrar - Eliminar un cliente de la BD
-  destroyCustomer: (req, res) => {
-    let idCustomer = req.params.id;
-		const customersNews = [];
+  // Borrar 
+  destroyUser: (req, res) => {
+    let idUser = req.params.id;
+		const UsersNews = [];
 		users.map(item =>{
-			if(item.id != idCustomer){
-				customersNews.push(item);
+			if(item.id != idUser){
+				UsersNews.push(item);
 			}			
 		});		
 		fs.writeFileSync(usersFilePath,JSON.stringify(customersNews),'utf-8');
-		res.render('./admin/customers',{
-      dataUsers: customersNews,
+		res.render('./admin/users',{
+      dataUsers: UsersNews,
       user: req.session.userLogged
     });		
   },

@@ -44,8 +44,8 @@ app.set('view engine','ejs');
 
 
 // Asignando el servidor
-app.listen(5000, () => {
-    console.log("Servidor ejecutandose en el puerto 5000");
+app.listen(2828, () => {
+    console.log("Servidor ejecutandose en el puerto 2828");
 });
 
 // Declarando la ruta del archivo inicio

@@ -13,7 +13,7 @@ app.use(express.static(publicPath));
 
 let mainController = {
   index: function(req,res){
-    res.render('./main/index', {dataBooks:products});
+    res.render('./main/index', {users:users});
   }
 }
 

@@ -10,8 +10,8 @@ const publicPath = path.resolve(__dirname, './public');
 app.use(express.static(publicPath));
 
 //conectando json
-// const usersFilePath = path.join(__dirname, '../data/users.json');
-// const users = JSON.parse(fs.readFileSync(usersFilePath, 'utf-8'));
+ const usersFilePath = path.join(__dirname, '../data/users.json');
+ const users = JSON.parse(fs.readFileSync(usersFilePath, 'utf-8'));
 
 // base de datos 
 const db = require("../database/models");
@@ -85,13 +85,10 @@ let usersController = {
     }
 
     let userToCreate = {
-      name:req.body.name,
-      lastname:req.body.lastname,
+      username:req.body.name,
       email:req.body.email,
-      city:req.body.city,
-      phone:req.body.phone,
       password: bcryptjs.hashSync(req.body.pass, 10),
-      confirmpass: bcryptjs.hashSync(req.body.confirmpass, 10),
+      password2: bcryptjs.hashSync(req.body.confirmpass, 10),
       acceptCondition:'on',
       image: 'user-generic.png',
       role: 'user' 
