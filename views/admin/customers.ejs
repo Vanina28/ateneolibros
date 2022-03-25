@@ -9,20 +9,17 @@
         <table class="table-products">
           <tr>
             <th class="disabledPc">Imagen</th>
-            <th>Nombre Completo</th>
+            <th>Nombre de Usuario</th>
             <th class="disabled">Rol</th>
             <th>Acciones</th>
           </tr>
           <% dataUsers.forEach(user=>{%>
             <tr class="article-product-admin">
               <td class="disabledPc">
-                <img src="../../../images/avatars/<%= user.image %>" alt="<%= user.name %>" title="<%= user.name %>">
+                <img src="../../../images/avatars/<%= images.image %>" alt="<%= user.username %>" title="<%= user.username %>">
               </td>
               <td>
-                <%= user.name+' '+user.lastname%>
-              </td>
-              <td class="disabled">
-                <%= user.role %>
+                <%= user.username%>
               </td>
               <td class="td-actions">
                 <div class="content-actions flexV">
