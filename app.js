@@ -1,7 +1,6 @@
-// Declarando los modulos externos de express
 const express = require('express');
-//const session = require('express-session');
-//const cookies = require('cookie-parser');
+const session = require('express-session');
+const cookies = require('cookie-parser');
 
 const app = express();
 const path = require('path');
@@ -11,54 +10,38 @@ const methodOverride =  require('method-override'); // Para poder usar los méto
 const publicPath = path.resolve(__dirname, './public');
 app.use(express.static(publicPath));
 
-/**********Rutas*************/
-//const routesMain = require('./routers/mainRouters.js');
-//const routesProduct = require('./routers/productRouters.js');
-//const routesUsers = require('./routers/usersRouters.js');
-//const routesAdmin = require('./routers/adminRouters.js');
+const routesMain = require('./routers/mainRouters.js');
+const routesUsers = require('./routers/usersRouters.js');
+const routesAdmin = require('./routers/adminRouters.js');
 
-
-/*************Middlewares**************/
 
 app.use(methodOverride('_method')); // Pasar poder pisar el method="POST" en el formulario por PUT y DELETE
 app.use(express.urlencoded({extended : false})); //recibir los valores de un formulario por POST
 
-/*********Invocar template engine EJS*********/
 app.set('view engine','ejs');
 
-/**************** Middleware de aplicacion ******************/
-//const userLoggedMiddleware = require('./middlewares/userLoggedMiddleware');
+const userLoggedMiddleware = require('./middlewares/userLoggedMiddleware');
 
-//app.use(session({
-  //  secret: "Shhh, It's a secret",
-    //resave: false,
-    //saveUninitialized: false,
-//}))//para generar sessiones en el sistema
-
-
-//Utilizando Cookies
-//app.use(cookies());
-
-//Utilizando session
-//app.use(userLoggedMiddleware);
+app.use(session({
+  secret: "Shhh, It's a secret",
+  resave: false,
+  saveUninitialized: false,
+}))//para generar sessiones en el sistema
 
 
-// Asignando el servidor
+app.use(cookies());
+
+app.use(userLoggedMiddleware);
+
+
 app.listen(2828, () => {
     console.log("Servidor ejecutandose en el puerto 2828");
 });
 
-// Declarando la ruta del archivo inicio
-//app.use('/', routesMain);
+app.use('/', routesMain);
 
-// Declarando la ruta del archivo detalle del producto y carrito de compras
-//app.use('/products', routesProduct);
-
-// Declarando la ruta del archivo registro1 
-//app.use('/users', routesUsers);
-
-// Declarando la ruta del archivo login
-//app.use('/admin', routesAdmin);
+app.use('/users', routesUsers);
+app.use('/admin', routesAdmin);
 
 
 
