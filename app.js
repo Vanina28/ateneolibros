@@ -26,7 +26,7 @@ app.use(session({
   secret: "Shhh, It's a secret",
   resave: false,
   saveUninitialized: false,
-}))//para generar sessiones en el sistema
+}))
 
 
 app.use(cookies());
@@ -42,7 +42,3 @@ app.use('/', routesMain);
 
 app.use('/users', routesUsers);
 app.use('/admin', routesAdmin);
-
-
-
-
